@@ -1,13 +1,10 @@
 language: csharp
     
 before_install:
-  - git --version
   - git config --global core.autocrlf false && git config --global core.filemode false
-  - git config --global core.sshCommand 'ssh -i ~/.ssh/ci'
   - echo -e ${CI_KEY} > ~/.ssh/ci
   - chmod 400 ~/.ssh/ci
-  - cat ~/.ssh/ci
-  - ssh-agent bash -c 'ssh-add ~/.ssh/ci; git clone https://javagg@bitbucket.org/OmniQuant/server.git'
+  - ssh-agent bash -c 'ssh-add ~/.ssh/ci; git clone git@bitbucket.org:OmniQuant/server.git'
 
 script:
   - cd server
