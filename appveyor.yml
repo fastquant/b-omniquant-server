@@ -13,8 +13,9 @@ before_build:
   - git --version
 #  - ps: echo "-----BEGIN RSA PRIVATE KEY-----" > $env:USERPROFILE\.ssh\ci
 #  - ps: echo $env:CI_KEY >> $env:USERPROFILE\.ssh\ci
-  - ps: $env:CI_KEY.Split("`n") > $env:USERPROFILE\.ssh\ci
+#  - ps: $env:CI_KEY.Split("`n") > $env:USERPROFILE\.ssh\ci
 #  - ps: echo "-----END RSA PRIVATE KEY-----" >> $env:USERPROFILE\.ssh\ci
+  - ps: $env:CI_KEY.Split("`n") | ForEach-Object -Process { echo $_ >> $env:USERPROFILE\.ssh\ci }
   - ps: cat $env:USERPROFILE\.ssh\ci
   - git clone git@bitbucket.org:OmniQuant/server.git
   
