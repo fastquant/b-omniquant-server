@@ -3,18 +3,22 @@ os: Visual Studio 2017
 environment:
   CI_KEY:
     secure: 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
-  GIT_SSH_COMMAND:
-    ssh -i ~/.ssh/ci -o StrictHostKeyChecking=no
     
 configuration:
   - Release
+
+install:
+  - ps: $key = "-----BEGIN RSA PRIVATE KEY-----`n"
+  - ps: $key += $env:CI_KEY.Replace(' ', "`n")
+  - ps: $key += "`n-----END RSA PRIVATE KEY-----`n"
+  - ps: Set-Content $env:userprofile\.ssh\id_rsa $key
   
 before_build:
   - git --version
-  - ps: echo "-----BEGIN RSA PRIVATE KEY-----" > $env:USERPROFILE\.ssh\ci
-  - ps: $env:CI_KEY.Split(" ") >> $env:USERPROFILE\.ssh\ci
-  - ps: echo "-----END RSA PRIVATE KEY-----" >> $env:USERPROFILE\.ssh\ci
-  - ps: cat $env:USERPROFILE\.ssh\ci
+#  - ps: echo "-----BEGIN RSA PRIVATE KEY-----" > $env:USERPROFILE\.ssh\ci
+#  - ps: $env:CI_KEY.Split(" ") >> $env:USERPROFILE\.ssh\ci
+#  - ps: echo "-----END RSA PRIVATE KEY-----" >> $env:USERPROFILE\.ssh\ci
+#  - ps: cat $env:USERPROFILE\.ssh\ci
   - git clone git@bitbucket.org:OmniQuant/server.git
   
 build_script:
