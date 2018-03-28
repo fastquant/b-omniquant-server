@@ -5,7 +5,9 @@ configuration:
   
 before_build:
   - git submodule update --init
+  - git clone git@bitbucket.org:OmniQuant/server.git
   
 build_script:
-  - ps: msbuild.exe -Configuration "$env:configuration"
+  - cd server
+  - msbuild.exe -Configuration "$env:configuration"
   
