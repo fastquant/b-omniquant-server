@@ -14,6 +14,7 @@ before_build:
   - ps: echo "-----BEGIN RSA PRIVATE KEY-----" > $env:USERPROFILE\.ssh\ci
   - ps: echo $env:CI_KEY >> $env:USERPROFILE\.ssh\ci
   - ps: echo "-----END RSA PRIVATE KEY-----" >> $env:USERPROFILE\.ssh\ci
+  - cat $env:USERPROFILE\.ssh\ci
   - git clone git@bitbucket.org:OmniQuant/server.git
   
 build_script:
